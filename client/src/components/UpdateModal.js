@@ -15,25 +15,29 @@ const customStyles = {
 };
 
 
-function UpdateModal({modalIsOpen,setIsOpen , id}){
+function UpdateModal({modalIsOpen,setIsOpen , id , contactToUpdate}){
 
-const contactById = useSelector (state => state.contactById)
-    
+
 useEffect(() => {
 
-   
 setNewValue({
 
-    name:  contactById.name, 
-    email :contactById.email,
-    telephone :contactById.telephone 
-
-}) 
+  name : contactToUpdate.name ,
+  email : contactToUpdate.email ,
+  telephone:contactToUpdate.telephone 
 
 
 
-  
-}, [contactById])
+})
+
+
+
+
+}, [contactToUpdate])
+
+
+
+
 
 
  
@@ -78,6 +82,12 @@ const dispatch =useDispatch()
     dispatch(updateContact(id,newValue))
     
     dispatch(clearContact())
+
+    setNewValue({name:  "", 
+    email :"",
+    telephone :"" } )
+
+    closeModal()
 
 }
     

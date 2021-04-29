@@ -20,11 +20,12 @@ dispatch(getContacts())
 const contacts = useSelector (state => state.contacts)
     
     const [modalIsOpen , setIsOpen] = useState(false)
+    const [contactToUpdate , setContact] = useState({}) 
     
     return (
         <div>
 
-<UpdateModal  modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} id={id}/>
+<UpdateModal  modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} id={id} contactToUpdate={contactToUpdate}/>
          {   contacts ?
          
          
@@ -52,7 +53,7 @@ const contacts = useSelector (state => state.contacts)
         setId(contact._id)
         setIsOpen(true)
         dispatch(getContactById(contact._id))
-        
+        setContact(contact)
         
         }}> Edit</button></td>
       <td><button className="btn btn-danger"  onClick={()=> dispatch(deleteContact(contact._id))}   >X</button></td>
