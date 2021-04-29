@@ -28,7 +28,7 @@ newContact.save()
 //@method  GET  /contact 
 //@desc  get all contacts
 
-
+// http://localhost:5000/contact/
 
 router.get('/' , (req,res) => {
 
@@ -39,6 +39,28 @@ Contact.find({})
 
 
 })
+
+
+//@method  GET  /contact/:id 
+//@desc  get contact by id
+
+
+router.get('/:id' , (req,res) => {
+
+Contact.findById(req.params.id)
+.then ((contact) => res.send(contact) )
+.catch(err => res.send({msg:'server error !' , err}))
+
+
+
+})
+
+
+
+
+
+
+
 
 //@method  PUT  /contact/:id 
 //@desc  update a contact
